@@ -63,4 +63,8 @@ public class Barrier extends JFrame implements Observer {
      * with the permitted vehicles list, and the "vehicle clear" button.
      */
     private boolean raised = true;
+
+    Barrier(System_status systemStatus, Vehicle_list vehicleList) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
