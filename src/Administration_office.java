@@ -1,3 +1,4 @@
+import java.util.Observable;
 import java.util.Observer;
 
 import javax.swing.JFrame;
@@ -49,4 +50,13 @@ public class Administration_office extends JFrame implements Observer {
      * @directed
      */
     private System_status lnkSystem_status;
+
+    Administration_office(System_status systemStatus, Vehicle_list vehicleList, Permit_list permitList) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void update(Observable o, Object o1) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
