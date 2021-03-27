@@ -43,17 +43,20 @@ public class Permit_list {
     public Permit_list() {
         lnkPermit_list = new Hashtable();
     }
-    
-    public Permit getPermit(String RegNum){
-        return ((Permit)lnkPermit_list.get(RegNum));
+
+    public Permit getPermit(String RegNum) {
+        return ((Permit) lnkPermit_list.get(RegNum));
     }
-    
+
+    public boolean checkPermitted(String RegNum, String CarC) {
+        return lnkPermit_list.containsKey(RegNum);
+    }
+
     public Permit addR(String Cn, String On, String Vd, String Ed) {
         Regular_visitor_permit Regular_visitor_permit = new Regular_visitor_permit(Cn, On, Vd, Ed);
         lnkPermit_list.put(Cn, Regular_visitor_permit);
         System.out.println("The permit table for regular visitor: " + lnkPermit_list);
         return Regular_visitor_permit;
-
     }
 
     public Permit addD(String Cn, String On, String Vd) {
@@ -77,16 +80,16 @@ public class Permit_list {
         return University_member_permit;
     }
 
-    public void print() {
+    public Hashtable printP(String Cn, String On, String Vd, String Ed) {
         Enumeration e = lnkPermit_list.elements();
         while (e.hasMoreElements()) {
             System.out.println("Permit elements are\n:" + e.nextElement());
         }
+        return lnkPermit_list;
     }
 
-    public void remove() {
-        Object obj = lnkPermit_list.remove("");
-        System.out.println(obj + " Data has removed from Hashtable");
+    public void removeP(String Cn, String On, String Vd, String Ed) {
+        Object obj1 = lnkPermit_list.remove("");
+        System.out.println(obj1 + " Permit Data has removed from Hashtable");
     }
-
 }

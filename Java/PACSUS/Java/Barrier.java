@@ -64,7 +64,9 @@ public class Barrier extends JFrame implements Observer, ActionListener {
     private JButton simulateV;
     private JButton CVehicle;
     private JButton quit;
-    private JLabel lblStop;
+    private JButton go;
+    private JButton stop;
+    
     private String rNum;
     private JTextArea fdback;
     private JTextArea lbdt;
@@ -79,8 +81,8 @@ public class Barrier extends JFrame implements Observer, ActionListener {
         
         // Configure the window
         setTitle("Barrier Screen");
-        setLocation(40, 40);
-        setSize(300, 220);
+        setLocation(440, 190);
+        setSize(300, 260);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         Container window = getContentPane();
         window.setLayout(new FlowLayout());
@@ -111,6 +113,15 @@ public class Barrier extends JFrame implements Observer, ActionListener {
         window.add(fdback);
         lbdt = new JTextArea("");
         window.add(lbdt);
+        
+        go = new JButton("GO");
+        window.add(go);
+        go.addActionListener(this);
+        
+        stop = new JButton("STOP!");
+        window.add(stop);
+        stop.addActionListener(this);
+        
         // Display the frame
         setVisible(true);
 
@@ -134,11 +145,19 @@ public class Barrier extends JFrame implements Observer, ActionListener {
         } else if (e.getSource() == simulateV) {
             display.setText(" simulated ");
         }
-
+        
         if (e.getSource() == quit) {
             System.exit(0);
         } else if (e.getSource() == CVehicle) {
             display.setText("");
+        }
+        
+        if (e.getSource() == go) {
+            go.setBackground(Color.GREEN);
+        }
+        
+        else if (e.getSource() == stop) {
+            stop.setBackground(Color.RED);
         }
     } // actionPerformed
 
@@ -150,21 +169,19 @@ public class Barrier extends JFrame implements Observer, ActionListener {
 
         if (active == false) {
             fdback.setText("The barrier is lowered");
-            //lblStop.setEnabled(true);
         }
 
         else if (active == true && raised == false) {
             fdback.setText("The barrier is raised");
-            //lblStop.setEnabled(true);
         }
         
         if (raised == true) {
             raised = lnkSystem_status.getStatus();
-            display.setText("True");
-
-        } else if (active == false) {
-           active = lnkSystem_status.getStatus();
             display.setText("False");
+
+        } else if (raised == false) {
+           raised = lnkSystem_status.getStatus();
+            display.setText("True");
         }
 
     } // update

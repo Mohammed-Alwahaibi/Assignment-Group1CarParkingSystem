@@ -117,7 +117,12 @@ public class Vehicle_list {
         return lnkVehicle;
     }
 
-    public boolean check(String RegNum, String CarC) {
+    public boolean remove(String RegNum, String CarC) {
         return lnkVehicle.containsKey(RegNum);
+    }
+
+    public void remove(String text, String text0, String text1, String text2) {
+        Object obj1 = lnkVehicle.remove("");
+        System.out.println(obj1 + " Vehicle Data has removed from Hashtable");
     }
 }
