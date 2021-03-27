@@ -137,6 +137,10 @@ public class Barrier extends JFrame implements Observer, ActionListener {
 
     } //Constructor
 
+    Barrier(System_status systemStatus, Vehicle_list vehicleList) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
     // Button click handling:
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == check) {

@@ -28,7 +28,8 @@ public class Main {
         System_status systemStatus = new System_status();
         Vehicle_list vehicleList = new Vehicle_list();
         Permit_list permitList = new Permit_list();
-        //Barrier barrier1 = new Barrier(systemStatus, vehicleList);  // Frame, boundary class
+     //This is done by Ms. Sheeba
+    //    Barrier barrier1 = new Barrier(systemStatus, vehicleList);  // Frame, boundary class
         Barrier barrier = new Barrier(systemStatus, vehicleList, "Barrier screen");
         // Repeat for as many barriers as required
 

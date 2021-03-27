@@ -70,7 +70,9 @@ public class Barrier extends JFrame implements Observer, ActionListener {
     private JTextArea lbdt;
     private JTextField display;
 
-    Barrier(System_status lnkSystem_status, Vehicle_list lnkVehicle_list, String barrier_screen) {
+  public void  Barrier(System_status lnkSystem_status, Vehicle_list lnkVehicle_list, String barrier_screen) {
+          //This is done by Ms. Sheeba
+ //   public void Barrier(System_status lnkSystem_status, Vehicle_list lnkVehicle_list) {
         this.lnkVehicle_list = lnkVehicle_list;
         this.lnkSystem_status = lnkSystem_status;
         this.campusSecurity = campusSecurity;
@@ -127,7 +129,7 @@ public class Barrier extends JFrame implements Observer, ActionListener {
 
             rNum = display.getText();
             int day = 0;
-            lnkVehicle_list.checkPermitted(rNum, day);
+          //  lnkVehicle_list.checkPermitted(rNum, day);
             lnkSystem_status.getStatus();
             //display.setText(" Checked ");
 
