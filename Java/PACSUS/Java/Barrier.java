@@ -66,7 +66,6 @@ public class Barrier extends JFrame implements Observer, ActionListener {
     private JButton quit;
     private JButton go;
     private JButton stop;
-    
     private String rNum;
     private JTextArea fdback;
     private JTextArea lbdt;
@@ -81,7 +80,7 @@ public class Barrier extends JFrame implements Observer, ActionListener {
         
         // Configure the window
         setTitle("Barrier Screen");
-        setLocation(440, 190);
+        setLocation(140, 40);
         setSize(300, 260);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         Container window = getContentPane();

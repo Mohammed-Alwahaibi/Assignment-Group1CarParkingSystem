@@ -38,58 +38,59 @@ public class Permit_list {
      *
      * @directed
      */
-    private java.util.Hashtable lnkPermit_list;
+    private java.util.Hashtable lnkPermit;
 
     public Permit_list() {
-        lnkPermit_list = new Hashtable();
+        lnkPermit = new Hashtable();
     }
 
     public Permit getPermit(String RegNum) {
-        return ((Permit) lnkPermit_list.get(RegNum));
+        return ((Permit) lnkPermit.get(RegNum));
     }
 
-    public boolean checkPermitted(String RegNum, String CarC) {
-        return lnkPermit_list.containsKey(RegNum);
+    public boolean checkPermitted(String RegNum) {
+        return lnkPermit.containsKey(RegNum);
     }
 
     public Permit addR(String Cn, String On, String Vd, String Ed) {
         Regular_visitor_permit Regular_visitor_permit = new Regular_visitor_permit(Cn, On, Vd, Ed);
-        lnkPermit_list.put(Cn, Regular_visitor_permit);
-        System.out.println("The permit table for regular visitor: " + lnkPermit_list);
+        lnkPermit.put(Cn, Regular_visitor_permit);
+        System.out.println("The permit table for regular visitor: " + lnkPermit);
         return Regular_visitor_permit;
     }
 
     public Permit addD(String Cn, String On, String Vd) {
         Day_visitor_permit Day_visitor_permit = new Day_visitor_permit(Cn, On, Vd);
-        lnkPermit_list.put(Cn, Day_visitor_permit);
-        System.out.println("The permit table for Day visitor: " + lnkPermit_list);
+        lnkPermit.put(Cn, Day_visitor_permit);
+        System.out.println("The permit table for Day visitor: " + lnkPermit);
         return Day_visitor_permit;
     }
 
     public Permit addP(String Cn) {
         Permanent_visitor_permit Permanent_visitor_permit = new Permanent_visitor_permit(Cn);
-        lnkPermit_list.put(Cn, Permanent_visitor_permit);
-        System.out.println("The permit table for Permanent visitor: " + lnkPermit_list);
+        lnkPermit.put(Cn, Permanent_visitor_permit);
+        System.out.println("The permit table for Permanent visitor: " + lnkPermit);
         return Permanent_visitor_permit;
     }
 
     public Permit addU(String Cn, String Vd) {
         University_member_permit University_member_permit = new University_member_permit(Cn, Vd);
-        lnkPermit_list.put(Cn, University_member_permit);
-        System.out.println("The permit table for University member: " + lnkPermit_list);
+        lnkPermit.put(Cn, University_member_permit);
+        System.out.println("The permit table for University member: " + lnkPermit);
         return University_member_permit;
     }
 
     public Hashtable printP(String Cn, String On, String Vd, String Ed) {
-        Enumeration e = lnkPermit_list.elements();
+        Enumeration e = lnkPermit.elements();
         while (e.hasMoreElements()) {
+            
             System.out.println("Permit elements are\n:" + e.nextElement());
         }
-        return lnkPermit_list;
+        return lnkPermit;
     }
 
     public void removeP(String Cn, String On, String Vd, String Ed) {
-        Object obj1 = lnkPermit_list.remove("");
+        Object obj1 = lnkPermit.remove("");
         System.out.println(obj1 + " Permit Data has removed from Hashtable");
     }
 }

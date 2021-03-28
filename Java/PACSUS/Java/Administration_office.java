@@ -84,7 +84,7 @@ public class Administration_office extends JFrame implements Observer, ActionLis
     private JTextField txV;
     private JTextField txE;
     private JTextField txC;
-    private TextArea textArea1;
+    private JTextArea textArea1;
     private JTextArea printArea;
     private JComboBox<String> comboPerType;
     Permit LPermit = null;
@@ -194,8 +194,19 @@ public class Administration_office extends JFrame implements Observer, ActionLis
             }
 
         } else if (e.getSource() == print) {
-            Hashtable lnkVehicle1 = lnkVehicle_list.print(text1.getText(), text2.getText());
-            textArea1.setText("HashTable" + lnkVehicle1.toString());
+            JFrame window3 = new JFrame("Window 3");
+            window3.setTitle("print Screen");
+            window3.setLocation(190, 350);
+            window3.setSize(690, 290);
+            window3.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+            window3.setLayout(new FlowLayout());
+            JLabel labelp = new JLabel("Printed Vehicle:\n ");
+            window3.add(labelp);
+            Hashtable lnkVehicle = lnkVehicle_list.print(text1.getText(), text2.getText());
+
+            JLabel labelpr = new JLabel("HashTable" + lnkVehicle.toString());
+            window3.add(labelpr);
+            window3.setVisible(true);
 
         } else if (e.getSource() == remove) {
             lnkVehicle_list.remove(txC.getText(), txN.getText(), txV.getText(), txE.getText());
@@ -216,23 +227,21 @@ public class Administration_office extends JFrame implements Observer, ActionLis
         if (e.getSource() == printP) {
             JFrame window3 = new JFrame("Window 3");
             window3.setTitle("print Screen");
-            window3.setLocation(70, 80);
-            window3.setSize(290, 270);
+            window3.setLocation(190, 350);
+            window3.setSize(690, 290);
             window3.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
             window3.setLayout(new FlowLayout());
             JLabel labelp = new JLabel("Printed Permit:\n ");
             window3.add(labelp);
 
             Hashtable lnkPermit = lnkPermit_list.printP(txC.getText(), txN.getText(), txV.getText(), txE.getText());
-            printArea.setText("HashTable" + lnkPermit.toString());
-            printArea.setEditable(false);
-            window3.add(printArea);
+            JLabel labelpr = new JLabel("HashTable" + lnkPermit.toString());
+            window3.add(labelpr);
             window3.setVisible(true);
 
         } else if (e.getSource() == removeP) {
             lnkPermit_list.removeP(txC.getText(), txN.getText(), txV.getText(), txE.getText());
         }
-
     }
 
     @Override
