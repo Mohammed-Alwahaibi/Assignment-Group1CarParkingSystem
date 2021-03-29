@@ -22,16 +22,18 @@ public class Vehicle_info {
     /**
      * The vehicle's registration number.
      */
+    // Useful program constants
     private String regNo;
     private String carc;
     private Permit lnkPermit;
 
     public Vehicle_info(Permit permit, String c1, String c2) {
-        lnkPermit = permit;
-        regNo = c1;
-        carc = c2;
+        lnkPermit = permit; //Permit hashtable
+        regNo = c1; //regerstration number
+        carc = c2; //Car color
     }
 
+    //Get the permit type from lnkPermit hashtable
     public String getPermitType() {
         return lnkPermit.getPermitType();
     }

@@ -25,20 +25,17 @@ public class Main {
      * register as Observers as necessary.
      */
     public static void main(String[] args) {
-        System_status systemStatus = new System_status();
-        Vehicle_list vehicleList = new Vehicle_list();
-        Permit_list permitList = new Permit_list();
-        //Barrier barrier1 = new Barrier(systemStatus, vehicleList);  // Frame, boundary class
+        System_status systemStatus = new System_status();//Sysytem Status
+        Vehicle_list vehicleList = new Vehicle_list();//Vehicle List
+        Permit_list permitList = new Permit_list();//Permit List
+
         Barrier barrier = new Barrier(systemStatus, vehicleList, "Barrier screen");
         // Repeat for as many barriers as required
 
-        //Campus_security campusSecurity1 = new Campus_security(systemStatus, vehicleList);  // Frame, boundary class
         Campus_security campusSecurity = new Campus_security(systemStatus, "Campus security screen");
         // Repeat for as many campus security screens as required
 
         Administration_office adminOffice = new Administration_office(systemStatus, vehicleList, permitList, "Administration Office Screen");  // Frame, boundary class
-       //  Administration_office adminOffice1 = new Administration_office(systemStatus, vehicleList, permitList, "Administration Office Permit Screen");  // Frame, boundary class
-        //Administration_office adminOffice1 = new Administration_office(vehicleList); 
         // Repeat for as many admin office screens as required
     } 
 } // main

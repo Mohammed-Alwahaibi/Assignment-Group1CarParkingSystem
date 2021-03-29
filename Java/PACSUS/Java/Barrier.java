@@ -11,7 +11,6 @@ import javax.swing.JFrame;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Calendar;
-import java.util.Date;
 import javax.swing.*;
 
 public class Barrier extends JFrame implements Observer, ActionListener {
@@ -58,11 +57,10 @@ public class Barrier extends JFrame implements Observer, ActionListener {
      * controlled by the result of checking a registration number with the
      * permitted vehicles list, and the "vehicle clear" button.
      */
+    // Useful program constants
     private Campus_security campusSecurity;
     private boolean raised = true;
     private JButton check;
-    private JButton simulateV;
-    private JButton CVehicle;
     private JButton quit;
     private JButton go;
     private JButton stop;
@@ -77,7 +75,8 @@ public class Barrier extends JFrame implements Observer, ActionListener {
         this.campusSecurity = campusSecurity;
         lnkSystem_status.addObserver(this);
         active = lnkSystem_status.getStatus();
-        
+
+        //Barrier window
         // Configure the window
         setTitle("Barrier Screen");
         setLocation(140, 40);
@@ -86,41 +85,30 @@ public class Barrier extends JFrame implements Observer, ActionListener {
         Container window = getContentPane();
         window.setLayout(new FlowLayout());
 
-        // Set up input GUI
+        // Set up input GUI for Barrier
         JLabel label = new JLabel("Enter Registration number");
         add(label);
-        display = new JTextField(" ", 15);
+        display = new JTextField("", 15);
         add(display);
-
         check = new JButton("Check vehicle");
         window.add(check);
         check.addActionListener(this);
-
-        simulateV = new JButton("Pass vehicle");
-        window.add(simulateV);
-        simulateV.addActionListener(this);
-
-        CVehicle = new JButton("Clear vehicle");
-        window.add(CVehicle);
-        CVehicle.addActionListener(this);
-
         quit = new JButton("Quit");
         window.add(quit);
         quit.addActionListener(this);
-
         fdback = new JTextArea("");
         window.add(fdback);
         lbdt = new JTextArea("");
         window.add(lbdt);
-        
+        //Button for Go
         go = new JButton("GO");
         window.add(go);
         go.addActionListener(this);
-        
+        //Button for stop
         stop = new JButton("STOP!");
         window.add(stop);
         stop.addActionListener(this);
-        
+
         // Display the frame
         setVisible(true);
 
@@ -128,59 +116,47 @@ public class Barrier extends JFrame implements Observer, ActionListener {
 
     // Button click handling:
     public void actionPerformed(ActionEvent e) {
+        //Check buttons codes
         if (e.getSource() == check) {
             java.util.Date tDate = lnkSystem_status.getToday();
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(tDate);
             calendar.get(Calendar.DAY_OF_MONTH);
-            lbdt.setText("Todays Date is: " + tDate);
+            //lbdt.setText(""+tDate);
 
+            //CheckPermit codes
             rNum = display.getText();
             int day = 0;
             lnkVehicle_list.checkPermitted(rNum, day);
             lnkSystem_status.getStatus();
-            //display.setText(" Checked ");
-
-        } else if (e.getSource() == simulateV) {
-            display.setText(" simulated ");
         }
-        
+        //Quit button
         if (e.getSource() == quit) {
             System.exit(0);
-        } else if (e.getSource() == CVehicle) {
-            display.setText("");
-        }
-        
-        if (e.getSource() == go) {
-            go.setBackground(Color.GREEN);
-        }
-        
-        else if (e.getSource() == stop) {
-            stop.setBackground(Color.RED);
         }
     } // actionPerformed
 
     // Notified by the system when it is altered:
     public void update(Observable o, Object arg) {
-         
+
+        //active to get status from system status 
         active = lnkSystem_status.getStatus();
         System.out.print("updated value is " + active);
 
-        if (active == false) {
+        if (active == true) {
+            fdback.setText("The barrier is raised");
+            
+        } else if (active == false && raised == true) {
             fdback.setText("The barrier is lowered");
         }
 
-        else if (active == true && raised == false) {
-            fdback.setText("The barrier is raised");
-        }
-        
         if (raised == true) {
             raised = lnkSystem_status.getStatus();
-            display.setText("False");
+            go.setBackground(Color.GREEN);
 
         } else if (raised == false) {
-           raised = lnkSystem_status.getStatus();
-            display.setText("True");
+            raised = lnkSystem_status.getStatus();
+            stop.setBackground(Color.RED);
         }
 
     } // update

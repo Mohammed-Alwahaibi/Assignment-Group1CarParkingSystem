@@ -41,17 +41,20 @@ public class Permit_list {
     private java.util.Hashtable lnkPermit;
 
     public Permit_list() {
-        lnkPermit = new Hashtable();
+        lnkPermit = new Hashtable(); //The hashtable that we have used
     }
 
-    public Permit getPermit(String RegNum) {
-        return ((Permit) lnkPermit.get(RegNum));
+    //Get Permit
+    public Permit getPermit(String Cn) {
+        return ((Permit) lnkPermit.get(Cn));
     }
 
+    //CheckPermitted 
     public boolean checkPermitted(String RegNum) {
         return lnkPermit.containsKey(RegNum);
     }
 
+    //Codes for adding the regular visitor to the Hashtable
     public Permit addR(String Cn, String On, String Vd, String Ed) {
         Regular_visitor_permit Regular_visitor_permit = new Regular_visitor_permit(Cn, On, Vd, Ed);
         lnkPermit.put(Cn, Regular_visitor_permit);
@@ -59,6 +62,7 @@ public class Permit_list {
         return Regular_visitor_permit;
     }
 
+    //Codes for adding the day visitor to the Hashtable
     public Permit addD(String Cn, String On, String Vd) {
         Day_visitor_permit Day_visitor_permit = new Day_visitor_permit(Cn, On, Vd);
         lnkPermit.put(Cn, Day_visitor_permit);
@@ -66,6 +70,7 @@ public class Permit_list {
         return Day_visitor_permit;
     }
 
+    //Codes for adding the parmanent visitor to the Hashtable
     public Permit addP(String Cn) {
         Permanent_visitor_permit Permanent_visitor_permit = new Permanent_visitor_permit(Cn);
         lnkPermit.put(Cn, Permanent_visitor_permit);
@@ -73,6 +78,7 @@ public class Permit_list {
         return Permanent_visitor_permit;
     }
 
+    //Codes for adding the university member to the Hashtable
     public Permit addU(String Cn, String Vd) {
         University_member_permit University_member_permit = new University_member_permit(Cn, Vd);
         lnkPermit.put(Cn, University_member_permit);
@@ -80,17 +86,19 @@ public class Permit_list {
         return University_member_permit;
     }
 
+    //Codes for printing the permit Hashtable
     public Hashtable printP(String Cn, String On, String Vd, String Ed) {
         Enumeration e = lnkPermit.elements();
         while (e.hasMoreElements()) {
-            
+
             System.out.println("Permit elements are\n:" + e.nextElement());
         }
         return lnkPermit;
     }
 
+    //Codes for removing the permit Hashtable
     public void removeP(String Cn, String On, String Vd, String Ed) {
-        Object obj1 = lnkPermit.remove("");
-        System.out.println(obj1 + " Permit Data has removed from Hashtable");
+        Object obj1 = lnkPermit.remove(Cn);
+        System.out.println("Permit Data has removed from Hashtable" + obj1);
     }
 }

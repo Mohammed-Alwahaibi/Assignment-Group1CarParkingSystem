@@ -46,12 +46,10 @@ public class Permit_listTest {
         System.out.println("getPermit");
         String RegNum = "123456";
         Permit_list instance = new Permit_list();
-        Permit expResult = instance.addR("123456", "Lee", "1", "9");
+        Permit expResult = instance.addR("123456","Lee","1","9");
         Permit result = instance.getPermit(RegNum);
         assertEquals(expResult, result);
-        //assertNotEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        
     }
 
     /**
@@ -60,16 +58,15 @@ public class Permit_listTest {
     @Ignore
     public void testCheckPermitted() {
         System.out.println("checkPermitted");
-        String RegNum = "1234121";
-        String CarC = "Blue";
+        String Cn = "1887";
+        String On = "Salim";
+        String Vd = "10";
         Permit_list instance = new Permit_list();
-        boolean expResult = false;
-        Permit result1 = instance.addR("1234121", "Blue", "1", "5");
-        boolean result = instance.checkPermitted(RegNum);
-        assertTrue("Key value failed", instance.checkPermitted(RegNum));
-        assertFalse("Key value failed", instance.checkPermitted(CarC));
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        Permit result = instance.addD("1234", "Kane", "11");
+        Permit expResult = instance.getPermit(Cn);
+        System.out.println("Result" + result);
+        System.out.println("expected result" + expResult);
+        assertNotEquals(expResult, result);
     }
 
     /**
@@ -88,8 +85,6 @@ public class Permit_listTest {
         System.out.println("Result" + result);
         System.out.println("expected result" + expResult);
         assertNotEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -107,8 +102,6 @@ public class Permit_listTest {
         System.out.println("Result" + result);
         System.out.println("expected result" + expResult);
         assertNotEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -124,14 +117,12 @@ public class Permit_listTest {
         System.out.println("Result" + result);
         System.out.println("expected result" + expResult);
         assertNotEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
      * Test of addU method, of class Permit_list.
      */
-    @Test
+    @Ignore
     public void testAddU() {
         System.out.println("addU");
         String Cn = "321654";
@@ -142,8 +133,6 @@ public class Permit_listTest {
          System.out.println("Result" + result);
         System.out.println("expected result" + expResult);
         assertNotEquals(expResult, result);
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
     }
 
     /**
@@ -153,9 +142,7 @@ public class Permit_listTest {
     public void testPrint() {
         System.out.println("print");
         Permit_list instance = new Permit_list();
-        //instance.print();
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        instance.printP("123123","Ali","1","8");
     }
 
     /**
@@ -165,9 +152,6 @@ public class Permit_listTest {
     public void testRemove() {
         System.out.println("remove");
         Permit_list instance = new Permit_list();
-        //instance.remove();
-        // TODO review the generated test code and remove the default call to fail.
-        //fail("The test case is a prototype.");
+        instance.removeP("123123","Ali","1","8");
     }
-
 }

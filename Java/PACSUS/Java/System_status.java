@@ -71,4 +71,8 @@ public class System_status extends Observable {
     public boolean getStatus() {
         return systemActive;
     } // getActive
+    
+    public boolean addEntry(String rNum) {
+        return systemActive;
+    } 
 }

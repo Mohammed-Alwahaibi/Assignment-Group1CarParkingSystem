@@ -27,88 +27,86 @@ public class Vehicle_list {
     private Vehicle_info Vehicle_info;
 
     public Vehicle_list() {
-        lnkVehicle = new Hashtable();
+        lnkVehicle = new Hashtable(); //The vehicle hashtable that we have used
     }
 
+    //CheckPermitted
     public boolean checkPermitted(String RegNum) {
         return lnkVehicle.containsKey(RegNum);
     }
 
+    //CheckPermitted method in barrier
     public boolean checkPermitted(String RegNum, int day) {
-        boolean flag = false;
+        boolean flag = true;
         if (lnkVehicle.containsKey(RegNum)) {
             {
-
+                //Get Permit type
                 String p2 = ((Vehicle_info) lnkVehicle.get(RegNum)).getPermitType();
                 System.out.println("The Permit type is " + p2);
+                //Get visit day
                 String p3 = (((Vehicle_info) lnkVehicle.get(RegNum)).getVisitday());
                 System.out.println("The Visit day details are " + p3);
+                //Get end day
                 String p4 = (((Vehicle_info) lnkVehicle.get(RegNum)).getEndday());
                 System.out.println("The End date details are " + p4);
 
+                //Checking the Regular Visitor
                 if (p2 == "Regular Visitor") {
-                    if (day >= Integer.parseInt(p3) && day <= Integer.parseInt(p4)) 
-                    {
+                    if (day >= Integer.parseInt(p3) && day <= Integer.parseInt(p4)) {
                         flag = true;
-                        System.out.println("The regular visitor with Registration number " +RegNum+ " has permission");
+                        System.out.println("The regular visitor with Registration number " +RegNum + " has permission");
                     } else {
                         flag = false;
-                        System.out.println("The regular visitor has no permission" +RegNum+ " has no permission");
+                        System.out.println("The regular visitor with Registration number " +RegNum + " has no permission");
                     }
-                } else {
-                    System.out.println("The vehicle registration number is not existing");
-                }
-                
-                if (p2 == "Day Visitor") {
-                    if (day == Integer.parseInt(p3) && day <= Integer.parseInt(p4)) 
-                    {
-                        flag = true;
-                        System.out.println("The Day visitor with Rgestration number " +RegNum+ " has permission");
-                    } else {
-                        flag = false;
-                        System.out.println("The Day visitor has no permission" +RegNum+ " has no permission");
-                    }
-                } else {
-                    System.out.println("The vehicle registration number is not existing");
-                }
-                
-                 if (p2 == "Unevesity member") {
-                    if (day == Integer.parseInt(p3) && day == Integer.parseInt(p4)) 
-                    {
-                        flag = true;
-                        System.out.println("The Day visitor with Rgestration number " +RegNum+ " has permission");
-                    } else {
-                        flag = false;
-                        System.out.println("The Day visitor has no permission" +RegNum+ " has no permission");
-                    }
-                } else {
-                    System.out.println("The vehicle registration number is not existing");
-                }
-                 
-                if (p2 == "Parmenent Visitor") {
-                    if (day == Integer.parseInt(p3) && day == Integer.parseInt(p4)) 
-                    {
-                        flag = true;
-                        System.out.println("The Day visitor with Rgestration number " +RegNum+ " has permission");
-                    } else {
-                        flag = false;
-                        System.out.println("The Day visitor has no permission" +RegNum+ " has no permission");
-                    }
-                } else {
-                    System.out.println("The vehicle registration number is not existing");
                 } 
- 
+
+                //Checking the Day Visitor
+                if (p2 == "Day Visitor") {
+                    if (day == Integer.parseInt(p3) && day <= Integer.parseInt(p4)) {
+                        flag = true;
+                        System.out.println("The Day visitor with Rgestration number " +RegNum + " has permission");
+                    } else {
+                        flag = false;
+                        System.out.println("The Day visitor with Registration number " +RegNum + " has no permission");
+                    }
+                } 
+
+                //Checking the Unevesity member
+                if (p2 == "Unevesity member") {
+                    if (day == Integer.parseInt(p3) && day == Integer.parseInt(p4)) {
+                        flag = true;
+                        System.out.println("The Unevesity member with Rgestration number " +RegNum + " has permission");
+                    } else {
+                        flag = false;
+                        System.out.println("The Unevesity member with Registration number " +RegNum + " has no permission");
+                    }
+                } 
+
+                //Checking the Parmenent Visitor 
+                if (p2 == "Parmenent Visitor") {
+                    if (day == Integer.parseInt(p3) && day == Integer.parseInt(p4)) {
+                        flag = true;
+                        System.out.println("The Parmenent visitor with Rgestration number " +RegNum + " has permission");
+                    } else {
+                        flag = false;
+                        System.out.println("The Parmenent visitor with Registration number " +RegNum + " has no permission");
+                    }
+                } 
+
             }
         }
         return flag;
     }
 
+    //Codes for adding new vehicle to the Hashtable
     public void add(Permit permit, String RegNum, String CarC) {
         Vehicle_info = new Vehicle_info(permit, RegNum, CarC);
         lnkVehicle.put(RegNum, Vehicle_info);
         System.out.println("The Vehicle table is\n: " + lnkVehicle);
     }
 
+    //Codes for printing vehicle to the Hashtable
     public Hashtable print(String RegNum, String CarC) {
         Enumeration e = lnkVehicle.elements();
         while (e.hasMoreElements()) {
@@ -121,8 +119,9 @@ public class Vehicle_list {
         return lnkVehicle.containsKey(RegNum);
     }
 
-    public void remove(String text, String text0, String text1, String text2) {
-        Object obj1 = lnkVehicle.remove("");
-        System.out.println(obj1 + " Vehicle Data has removed from Hashtable");
+    //Codes for removing vehicle from the Hashtable
+    public void remove1(String RegNum, String CarC) {
+        Object obj1 = lnkVehicle.remove(RegNum, CarC);
+        System.out.println(" Vehicle Data has removed from Hashtable" + obj1);
     }
 }

@@ -45,12 +45,8 @@ public class Campus_security extends JFrame implements Observer, ActionListener 
      */
     private System_status systemStatus;
     private System_status lnkSystem_status;
-    private int count;
-    private JButton addBtn;
-    private JButton decBtn;
     private JButton active;
     private JButton deactivate;
-    private JButton warnings;
     private JTextField display;
 
     Campus_security(System_status systemStatus, String Campus_security_screen) {
@@ -61,18 +57,17 @@ public class Campus_security extends JFrame implements Observer, ActionListener 
 
         // Configure the window
         setTitle("Campus security screen");
-        setLocation(440, 40);
+        setLocation(490, 40);
         setSize(300, 150);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         Container window = getContentPane();
         window.setLayout(new FlowLayout());
 
         // Set up input GUI
-        JLabel label = new JLabel("No of Entries:");
-        add(label);
-        display = new JTextField(" ", 5);
-        add(display);
-
+        
+        display = new JTextField(" ", 20);
+        window.add(display);
+        
         active = new JButton("Active");
         window.add(active);
         active.addActionListener(this);
@@ -81,19 +76,6 @@ public class Campus_security extends JFrame implements Observer, ActionListener 
         window.add(deactivate);
         deactivate.addActionListener(this);
 
-        warnings = new JButton("Warnings");
-        window.add(warnings);
-        warnings.addActionListener(this);
-
-        count = 0;
-        
-        addBtn = new JButton("Add Entry");
-        window.add(addBtn);
-        addBtn.addActionListener(this);
-
-        decBtn = new JButton("Remove Entry");
-        window.add(decBtn);
-        decBtn.addActionListener(this);
         // Display the frame
         setVisible(true);
     } //Constructor
@@ -104,19 +86,7 @@ public class Campus_security extends JFrame implements Observer, ActionListener 
             systemStatus.active();
         } else if (e.getSource() == deactivate) {
             systemStatus.deactivate();
-        } else if (e.getSource() == warnings) {
-            display.setText("Warnings");
         } 
-        if (e.getSource() == addBtn) {
-         count++; // increment the coiunt by 1
-         display.setText(String.valueOf(count));
-         repaint();
-      }
-       else if (e.getSource() == decBtn) {
-         count--; // increment the coiunt by 1
-         display.setText(String.valueOf(count));
-         repaint();
-      }
     } // actionPerformed
 
     @Override
