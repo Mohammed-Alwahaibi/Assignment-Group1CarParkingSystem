@@ -19,6 +19,7 @@ public class Permanent_visitor_permit extends Permit {
     }    
 
     @Override
+    //ToString method for printing Permanent visitor permit
     public String toString() {
          return "Permanent_visitor_permit{" + '}';
     }

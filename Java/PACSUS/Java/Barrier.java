@@ -15,51 +15,12 @@ import javax.swing.*;
 
 public class Barrier extends JFrame implements Observer, ActionListener {
 
-    /**
-     * Each instance of Barrier has a navigable association to the permit list
-     * so that when a vehicle's registration number has been recognized by the
-     * camera, the barrier can check whether to raise itself or not by checking
-     * the status of that vehicle's permit.
-     *
-     * @clientCardinality 1..
-     *
-     * @supplierCardinality 1
-     * @label Access permits
-     * @directed
-     */
-    private Vehicle_list lnkVehicle_list;
-
-    /**
-     * Each instance of Barrier has a navigable association to the system status
-     * so that it can check whether the barrier system as a whole is active or
-     * inactive, and so that it can send event messages to be recorded in the
-     * log.
-     *
-     * @clientCardinality 1..
-     *
-     * @supplierCardinality 1
-     * @label Fetch system status info
-     * @directed
-     */
-    private System_status lnkSystem_status;
-
-    /**
-     * This attribute indicates the active/inactive state of the barrier system
-     * - as notified by the system status when it changes (Barrier Observes
-     * System status). If false then the barrier must be up. If true then the
-     * barrier position is determined by attribute raised.
-     */
-    private boolean active = false;
-
-    /**
-     * If the barrier system is active, this attribute indicates whether the
-     * barrier is currently in its raised or lowered position. The position is
-     * controlled by the result of checking a registration number with the
-     * permitted vehicles list, and the "vehicle clear" button.
-     */
     // Useful program constants
+    private System_status lnkSystem_status;
     private Campus_security campusSecurity;
+    private Vehicle_list lnkVehicle_list;
     private boolean raised = true;
+    private boolean active = false;
     private JButton check;
     private JButton quit;
     private JButton go;
@@ -145,7 +106,7 @@ public class Barrier extends JFrame implements Observer, ActionListener {
 
         if (active == true) {
             fdback.setText("The barrier is raised");
-            
+
         } else if (active == false && raised == true) {
             fdback.setText("The barrier is lowered");
         }

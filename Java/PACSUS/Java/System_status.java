@@ -22,56 +22,43 @@ import java.util.Date;
  */
 public class System_status extends Observable {
 
-    /**
-     * This attribute is the central indication of the activity status of the
-     * whole barrier system. It is set/unset by messages from instances of the
-     * Campus security class.
-     */
+    // Useful program constants
     private boolean systemActive = false;
-    /**
-     * An array of strings showing recent attempts to pass through the barriers
-     * (both successful and unsuccessful). The last 20 should be enough? These
-     * are intended for display on the Campus_security screens.
-     */
     private String[] log;
     private boolean active = false;
     private boolean deactivate = true;
-
-    /**
-     * This attribute is kept up to date by the Timer.
-     *
-     * @clientCardinality 1
-     * @supplierCardinality 1
-     * @link aggregation
-     * @label Contains
-     * @directed
-     */
     private Date today;
 
+    //Get the system status 
     public System_status() {
         today = new Date();
     }
 
+    //Get Todays date
     public Date getToday() {
         return today;
     }
-       
+
+    //codes for active in class barrier 
     public void active() {
         systemActive = true;
         setChanged();
         notifyObservers();
     } // active
 
+    //codes for deactivate in class barrier 
     public void deactivate() {
         systemActive = false;
         setChanged();
         notifyObservers();
     } // deactivate
 
+    //Get system status
     public boolean getStatus() {
         return systemActive;
     } // getActive
-    
+
+    //Codes for add entry
     public boolean addEntry(String rNum) {
         return systemActive;
     } 

@@ -38,19 +38,23 @@ public class Vehicle_info {
         return lnkPermit.getPermitType();
     }
 
+    //Get permit from lnkPermit hashtable
     public Permit getPermit() {
         return lnkPermit;
     }
 
+    //Get the visit day
     public String getVisitday() {
         return lnkPermit.getVisitday();
     }
 
+    //Get the end day
     public String getEndday() {
         return lnkPermit.getEndday();
     }
 
     @Override
+    //ToString method for printing the vehicle info
     public String toString() {
         return "Vehicle_info{" + "regNo=" + regNo + ", carColor=" + carc + ", lnkPermit=" + lnkPermit + '}';
     }

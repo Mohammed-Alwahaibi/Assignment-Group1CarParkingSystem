@@ -52,7 +52,7 @@ public class Vehicle_list {
 
                 //Checking the Regular Visitor
                 if (p2 == "Regular Visitor") {
-                    if (day >= Integer.parseInt(p3) && day <= Integer.parseInt(p4)) {
+                    if (day <= Integer.parseInt(p3) && day <= Integer.parseInt(p4)) {
                         flag = true;
                         System.out.println("The regular visitor with Registration number " +RegNum + " has permission");
                     } else {

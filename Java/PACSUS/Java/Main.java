@@ -13,17 +13,6 @@ package PACSUS.Java;
  */
 public class Main {
 
-    /**
-     * This main method builds the operational infrastructure of PACSUS as it
-     * starts up:
-     *
-     * The fixed internal "model" classes holding data are instantiated: one
-     * instance each of System status, Vehicle list and Permit list.
-     *
-     * Boundary class objects are instantiated, supplied with references to the
-     * model classes. They are presumed to put themselves on display, and
-     * register as Observers as necessary.
-     */
     public static void main(String[] args) {
         System_status systemStatus = new System_status();//Sysytem Status
         Vehicle_list vehicleList = new Vehicle_list();//Vehicle List

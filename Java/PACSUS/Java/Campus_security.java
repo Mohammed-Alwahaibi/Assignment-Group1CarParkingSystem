@@ -14,35 +14,8 @@ import javax.swing.*;
 
 public class Campus_security extends JFrame implements Observer, ActionListener {
 
-    private static void deactivateB() {
-    }
-    /**
-     * Each instance of Campus_security has a navigable association to the
-     * vehicle list so that warnings can be recorded on the permit for vehicles
-     * that breach parking regulations. Note that this process goes via the
-     * vehicle list as the only information available about such a vehicle is
-     * its registration number.
-     *
-     * @clientCardinality 1..
-     *
-     * @supplierCardinality 1
-     * @label Record warning
-     * @directed
-     */
+    // Useful program constants
     private Vehicle_list lnkVehicle_list;
-
-    /**
-     * Each instance of Campus_security has a navigable association to the
-     * system status so that it can both find out status information about the
-     * system, and send controlling messages to the system status (to
-     * activate/deactivate the system).
-     *
-     * @clientCardinality 1..
-     *
-     * @supplierCardinality 1
-     * @label Control/monitor
-     * @directed
-     */
     private System_status systemStatus;
     private System_status lnkSystem_status;
     private JButton active;
@@ -50,11 +23,13 @@ public class Campus_security extends JFrame implements Observer, ActionListener 
     private JTextField display;
 
     Campus_security(System_status systemStatus, String Campus_security_screen) {
+        //codes for linking between the classes
         this.lnkVehicle_list = lnkVehicle_list;
         this.lnkSystem_status = lnkSystem_status;
         this.systemStatus = systemStatus;
         systemStatus.addObserver(this);
 
+        //Campus security interface
         // Configure the window
         setTitle("Campus security screen");
         setLocation(490, 40);
@@ -64,14 +39,11 @@ public class Campus_security extends JFrame implements Observer, ActionListener 
         window.setLayout(new FlowLayout());
 
         // Set up input GUI
-        
         display = new JTextField(" ", 20);
         window.add(display);
-        
         active = new JButton("Active");
         window.add(active);
         active.addActionListener(this);
-
         deactivate = new JButton("Deactivate");
         window.add(deactivate);
         deactivate.addActionListener(this);

@@ -21,23 +21,6 @@ import java.util.Enumeration;
  */
 public class Permit_list {
 
-    /**
-     * The Permit list maintains a collection of the Permits currently issued.
-     *
-     * This association must be implemented by an attribute holding a collection
-     * data structure (for example: array, hash table - the latter is
-     * recommended).
-     *
-     * Note that no two Permits may have the same permit holder name (this
-     * information is not represented diagrammatically).
-     *
-     * @associates Permit
-     * @label Contains
-     * @clientCardinality 1
-     * @supplierCardinality 0..
-     *
-     * @directed
-     */
     private java.util.Hashtable lnkPermit;
 
     public Permit_list() {
