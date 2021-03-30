@@ -59,16 +59,14 @@ public class Administration_office extends JFrame implements Observer, ActionLis
     private JButton addP;
     private JButton removeP;
     private JButton printP;
-    private JButton addBtn;
-    private JButton decBtn;
     private JButton warnings;
     private JButton warnings1;
-    private JTextField text1;
-    private JTextField text2;
-    private JTextField txN;
-    private JTextField txV;
-    private JTextField txE;
-    private JTextField txC;
+    private JTextField regNum;
+    private JTextField carCl;
+    private JTextField carName;
+    private JTextField owenerNm;
+    private JTextField visitDay;
+    private JTextField endDay;
     private JTextField display;
     private JTextField display1;
     Permit LPermit = null;
@@ -93,16 +91,22 @@ public class Administration_office extends JFrame implements Observer, ActionLis
         //AdministrationOffice TextFields and labels
         JLabel label = new JLabel("Registration number:");
         window.add(label);
-        text1 = new JTextField("", 15);
-        window.add(text1);
+        regNum = new JTextField("", 15);
+        window.add(regNum);
         JLabel label2 = new JLabel("Car color:");
         window.add(label2);
-        text2 = new JTextField("", 15);
-        window.add(text2);
+        carCl = new JTextField("", 15);
+        window.add(carCl);
         JLabel labelC = new JLabel("Car Name:");
         window.add(labelC);
-        txC = new JTextField("", 15);
-        window.add(txC);
+        carName = new JTextField("", 15);
+        window.add(carName);
+        //the number of Entries
+        JLabel labele = new JLabel("No of Entries:");
+        window.add(labele);
+        display = new JTextField("", 7);
+        window.add(display);
+        //Buttons
         add = new JButton("Add");
         window.add(add);
         add.addActionListener(this);
@@ -113,18 +117,6 @@ public class Administration_office extends JFrame implements Observer, ActionLis
         window.add(print);
         print.addActionListener(this);
 
-        //the number of Entries
-        JLabel labele = new JLabel("No of Entries:");
-        window.add(labele);
-        display = new JTextField("", 5);
-        window.add(display);
-        count = 0;
-        addBtn = new JButton("Add Entry");
-        window.add(addBtn);
-        addBtn.addActionListener(this);
-        decBtn = new JButton("Remove Entry");
-        window.add(decBtn);
-        decBtn.addActionListener(this);
         display1 = new JTextField("", 10);
         window.add(display1);
         warnings = new JButton("Add Warnings");
@@ -154,16 +146,16 @@ public class Administration_office extends JFrame implements Observer, ActionLis
 
         JLabel labeln = new JLabel("Owenr Name:");
         window1.add(labeln);
-        txN = new JTextField("", 20);
-        window1.add(txN);
+        owenerNm = new JTextField("", 20);
+        window1.add(owenerNm);
         JLabel labelV = new JLabel("Visit Day:");
         window1.add(labelV);
-        txV = new JTextField("", 20);
-        window1.add(txV);
+        visitDay = new JTextField("", 20);
+        window1.add(visitDay);
         JLabel labelE = new JLabel("End Day:");
         window1.add(labelE);
-        txE = new JTextField("", 20);
-        window1.add(txE);
+        endDay = new JTextField("", 20);
+        window1.add(endDay);
         addP = new JButton("Permit Add");
         window1.add(addP);
         addP.addActionListener(this);
@@ -183,16 +175,17 @@ public class Administration_office extends JFrame implements Observer, ActionLis
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == add) {
             // code for add vehicle button  
-            if (!lnkVehicle_list.checkPermitted(text1.getText())) {
-                LPermit = lnkPermit_list.getPermit(txC.getText());
-                lnkVehicle_list.add(LPermit, text1.getText(), text2.getText(), txC.getText());
+            if (!lnkVehicle_list.checkPermitted(regNum.getText())) {
+                LPermit = lnkPermit_list.getPermit(carName.getText());
+                lnkVehicle_list.add(LPermit, regNum.getText(), carCl.getText(), carName.getText(), display.getText());
                 System.out.println("Vehicle is added");
             } else {
                 System.out.println("Registration number is alredy existing");
             }
-            text1.setText("");
-            text2.setText("");
-            txC.setText("");
+            regNum.setText("");
+            carCl.setText("");
+            carName.setText("");
+            display.setText("");
 
             // code for print vehicle button
         } else if (e.getSource() == print) {
@@ -204,34 +197,33 @@ public class Administration_office extends JFrame implements Observer, ActionLis
             JLabel labelp = new JLabel("Printed Vehicle:\n ");
             window3.add(labelp);
             //Vehicle Hashtable
-            Hashtable lnkVehicle = lnkVehicle_list.print(text1.getText(), text2.getText());
+            Hashtable lnkVehicle = lnkVehicle_list.print(regNum.getText(), carCl.getText());
             JLabel labelpr = new JLabel("Vehicle HashTable" + lnkVehicle.toString());
             window3.add(labelpr);
             window3.setVisible(true);
 
             // code for remove vehicle button
         } else if (e.getSource() == remove) {
-            lnkVehicle_list.remove1(text1.getText(), text2.getText());
+            lnkVehicle_list.remove1(regNum.getText(), carCl.getText());
         }
 
         // code for add permit button
         if (e.getSource() == addP) {
 
             if (((String) comboPerType.getSelectedItem()).equals("Day Visitor")) {
-                lnkPermit_list.addD(txN.getText(), txV.getText(), txE.getText());
-
+                lnkPermit_list.addD(carName.getText(), owenerNm.getText(), visitDay.getText());
             } else if (((String) comboPerType.getSelectedItem()).equals("Regular Visitor")) {
-                lnkPermit_list.addR(txC.getText(), txN.getText(), txV.getText(), txE.getText());
+                lnkPermit_list.addR(carName.getText(), owenerNm.getText(), visitDay.getText(), endDay.getText());
             } else if (((String) comboPerType.getSelectedItem()).equals("Permanent Visitor")) {
-                lnkPermit_list.addP(txC.getText());
+                lnkPermit_list.addP(owenerNm.getText());
 
             } else if (((String) comboPerType.getSelectedItem()).equals("University Visitor")) {
-                lnkPermit_list.addU(txC.getText(), txV.getText());
+                lnkPermit_list.addU(owenerNm.getText(), visitDay.getText());
 
             }
-            txE.setText("");
-            txN.setText("");
-            txV.setText("");
+            endDay.setText("");
+            owenerNm.setText("");
+            visitDay.setText("");
         }
 
         // code for print permit button
@@ -244,33 +236,21 @@ public class Administration_office extends JFrame implements Observer, ActionLis
             JLabel labelp = new JLabel("Printed Permit:\n ");
             window3.add(labelp);
             //Vehicle Hashtable
-            Hashtable lnkPermit = lnkPermit_list.printP(txC.getText(), txN.getText(), txV.getText(), txE.getText());
+            Hashtable lnkPermit = lnkPermit_list.printP(carName.getText(), owenerNm.getText(), visitDay.getText(), endDay.getText());
             JLabel labelpr = new JLabel("Permit HashTable\n: " + lnkPermit.toString());
             window3.add(labelpr);
             window3.setVisible(true);
 
             // code for remove permit button   
         } else if (e.getSource() == removeP) {
-            lnkPermit_list.removeP(txC.getText(), txN.getText(), txV.getText(), txE.getText());
+            lnkPermit_list.removeP(carName.getText(), owenerNm.getText(), visitDay.getText(), endDay.getText());
         }
-
-        //Add Entry button
-        if (e.getSource() == addBtn) {
-            count++; // increment the coiunt by 1
-            display.setText(String.valueOf(count));
-            repaint();
-        } //Remove Entry button
-        else if (e.getSource() == decBtn) {
-            count--; // increment the coiunt by 1
-            display.setText(String.valueOf(count));
-            repaint();
-        } 
         
         if (e.getSource() == warnings) {
+            display1.getText();
             
-            
-        } else if (e.getSource() == warnings) {
-            
+        } else if (e.getSource() == warnings1) {
+            display1.getText();
             
         }
     }

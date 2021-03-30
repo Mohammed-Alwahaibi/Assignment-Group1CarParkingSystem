@@ -48,9 +48,9 @@ abstract public class Permit {
         this.endday = endday;
     }
 
-    //Set the warnings
-    public void setWarning(String warnings) {
-        this.warnings = warnings;
+    //Set the 
+    public void setNumEntries(int noOfEntries) {
+        this.noOfEntries = noOfEntries;
     }
 
     //Set the Suspended
@@ -63,9 +63,9 @@ abstract public class Permit {
         return suspended;
     }
 
-    //Get the warnings
-    public String getWarning() {
-        return warnings;
+    //Get the 
+    public int getNumEntries() {
+        return noOfEntries;
     }
 
     //Get the permit type

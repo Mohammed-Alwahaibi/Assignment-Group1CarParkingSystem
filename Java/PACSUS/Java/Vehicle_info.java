@@ -27,12 +27,15 @@ public class Vehicle_info {
     private String carc;
     private String carName;
     private Permit lnkPermit;
+    private int NumEntries;
 
-    public Vehicle_info(Permit permit, String c1, String c2, String c3) {
+    public Vehicle_info(Permit permit, String c1, String c2, String c3, String c4) {
         lnkPermit = permit; //Permit hashtable
         regNo = c1; //regerstration number
         carc = c2; //Car color
-        carName = c3;
+        carName = c3;//Car name
+        int i = 1;
+        NumEntries = i++;
     }
 
     //Get the permit type from lnkPermit hashtable
@@ -40,14 +43,9 @@ public class Vehicle_info {
         return lnkPermit.getPermitType();
     }
 
-    //Get the Warning
-    public String getWarning() {
-        return lnkPermit.getWarning();
-    }
-
-    //Get Suspended
-    public String getSuspended() {
-        return lnkPermit.getSuspended();
+    //Get the number of entries
+    public int getNumEntries() {
+        return lnkPermit.getNumEntries();
     }
 
     //Get permit from lnkPermit hashtable
@@ -68,6 +66,6 @@ public class Vehicle_info {
     @Override
     //ToString method for printing the vehicle info
     public String toString() {
-        return "Vehicle_info{" + "regNo=" + regNo + ", carcolor=" + carc + ", carName=" + carName + ", lnkPermit=" + lnkPermit + '}';
+        return "Vehicle_info{" + "regNo=" + regNo + ", carc=" + carc + ", carName=" + carName + ", lnkPermit=" + lnkPermit + ", NumEntries=" + NumEntries + '}';
     }
 }

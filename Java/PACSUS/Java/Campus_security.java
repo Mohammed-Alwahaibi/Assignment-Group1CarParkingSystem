@@ -22,6 +22,7 @@ public class Campus_security extends JFrame implements Observer, ActionListener 
     private JButton active;
     private JButton warnings;
     private JButton deactivate;
+    private JTextArea lbdpr;
     private JTextField display;
 
     Campus_security(System_status systemStatus, String Campus_security_screen) {
@@ -52,6 +53,8 @@ public class Campus_security extends JFrame implements Observer, ActionListener 
         warnings = new JButton("Warnings");
         window.add(warnings);
         warnings.addActionListener(this);
+        lbdpr = new JTextArea("                                     ");
+        window.add(lbdpr);
 
         // Display the frame
         setVisible(true);
@@ -61,8 +64,10 @@ public class Campus_security extends JFrame implements Observer, ActionListener 
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == active) {
             systemStatus.active();
+            lbdpr.setText("Vehicle has permisson");
         } else if (e.getSource() == deactivate) {
             systemStatus.deactivate();
+            lbdpr.setText("Vehicle has no permisson");
         } 
         
         if (e.getSource() == warnings) {

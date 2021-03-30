@@ -57,12 +57,8 @@ public class Barrier extends JFrame implements Observer, ActionListener {
         quit = new JButton("Quit");
         window.add(quit);
         quit.addActionListener(this);
-        fdback = new JTextArea("");
+        fdback = new JTextArea("                                    ");
         window.add(fdback);
-        lbdt = new JTextArea("");
-        window.add(lbdt);
-        lbdpr = new JTextArea("");
-        window.add(lbdpr);
         //Button for Go with color green change to red
         go = new JButton("GO");
         window.add(go);
@@ -111,15 +107,13 @@ public class Barrier extends JFrame implements Observer, ActionListener {
 
         if (raised == true) {
             raised = lnkSystem_status.getStatus();
-            go.setText("GO");
             go.setBackground(Color.GREEN);
-            lbdpr.setText("Vehicle has permisson");
-
+            go.setText("GO");
+            
         } else if (raised == false) {
             raised = lnkSystem_status.getStatus();
-            go.setText("STOP!");
             go.setBackground(Color.RED);
-            lbdpr.setText("Vehicle has no permisson");
+            go.setText("STOP!");
         }
     } // update
 
