@@ -13,8 +13,6 @@ package PACSUS.Java;
 public class Regular_visitor_permit extends Permit {
 
     // Useful program constants
-    private Date lnkDate;
-    private String hostName;
     private String owenerName;
     private String visitDay;
     private String endDay;

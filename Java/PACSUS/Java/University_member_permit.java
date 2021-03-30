@@ -14,7 +14,6 @@ package PACSUS.Java;
 public class University_member_permit extends Permit {
 
     // Useful program constants
-    private Date lnkDate;
     private String permitType;
     private String visitDay;
 
@@ -22,13 +21,15 @@ public class University_member_permit extends Permit {
         //initialize the values
         super(Cn);
         visitDay = Vd;
+        permitType = "University member";
         setPermitType(permitType);//Set the Permit Type
-        setVisitday(visitDay);//Set the visit day
+        setVisitday(Vd);//Set the visit day
     }
 
     @Override
     //ToString method for printing University member permit
     public String toString() {
-        return "University_member_permit{" + "lnkDate=" + lnkDate + ", visitDay=" + visitDay + '}';
+        return "University_member_permit{" + ", permitType=" + permitType + ", visitDay=" + visitDay + '}';
     }
+    
 }

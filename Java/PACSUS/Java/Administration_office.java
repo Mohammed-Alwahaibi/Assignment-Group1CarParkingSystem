@@ -70,6 +70,7 @@ public class Administration_office extends JFrame implements Observer, ActionLis
     private JTextField txE;
     private JTextField txC;
     private JTextField display;
+    private JTextField display1;
     Permit LPermit = null;
     private JComboBox<String> comboPerType;
     String[] perTypes = {"Regular Visitor", "Day Visitor", "Permanent Visitor", "University Visitor"};
@@ -86,7 +87,7 @@ public class Administration_office extends JFrame implements Observer, ActionLis
         //AdministrationOffice window
         window.setTitle("AdministrationOffice Screen");
         window.setLocation(870, 40);
-        window.setSize(240, 480);
+        window.setSize(240, 420);
         window.setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         window.setLayout(new FlowLayout());
         //AdministrationOffice TextFields and labels
@@ -124,6 +125,8 @@ public class Administration_office extends JFrame implements Observer, ActionLis
         decBtn = new JButton("Remove Entry");
         window.add(decBtn);
         decBtn.addActionListener(this);
+        display1 = new JTextField("", 10);
+        window.add(display1);
         warnings = new JButton("Add Warnings");
         window.add(warnings);
         warnings.addActionListener(this);
@@ -164,7 +167,7 @@ public class Administration_office extends JFrame implements Observer, ActionLis
         addP = new JButton("Permit Add");
         window1.add(addP);
         addP.addActionListener(this);
-        removeP = new JButton("Permit Remove");
+        removeP = new JButton("Permit Cancel");
         window1.add(removeP);
         removeP.addActionListener(this);
         printP = new JButton("Permit Print");
@@ -182,7 +185,7 @@ public class Administration_office extends JFrame implements Observer, ActionLis
             // code for add vehicle button  
             if (!lnkVehicle_list.checkPermitted(text1.getText())) {
                 LPermit = lnkPermit_list.getPermit(txC.getText());
-                lnkVehicle_list.add(LPermit, text1.getText(), text2.getText());
+                lnkVehicle_list.add(LPermit, text1.getText(), text2.getText(), txC.getText());
                 System.out.println("Vehicle is added");
             } else {
                 System.out.println("Registration number is alredy existing");
@@ -242,7 +245,7 @@ public class Administration_office extends JFrame implements Observer, ActionLis
             window3.add(labelp);
             //Vehicle Hashtable
             Hashtable lnkPermit = lnkPermit_list.printP(txC.getText(), txN.getText(), txV.getText(), txE.getText());
-            JLabel labelpr = new JLabel("Permit HashTable" + lnkPermit.toString());
+            JLabel labelpr = new JLabel("Permit HashTable\n: " + lnkPermit.toString());
             window3.add(labelpr);
             window3.setVisible(true);
 
@@ -261,6 +264,14 @@ public class Administration_office extends JFrame implements Observer, ActionLis
             count--; // increment the coiunt by 1
             display.setText(String.valueOf(count));
             repaint();
+        } 
+        
+        if (e.getSource() == warnings) {
+            
+            
+        } else if (e.getSource() == warnings) {
+            
+            
         }
     }
 

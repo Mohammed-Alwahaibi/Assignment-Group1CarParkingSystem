@@ -43,6 +43,7 @@ public class Vehicle_list {
                 //Get Permit type
                 String p2 = ((Vehicle_info) lnkVehicle.get(RegNum)).getPermitType();
                 System.out.println("The Permit type is " + p2);
+                System.out.println("Day " + day);
                 //Get visit day
                 String p3 = (((Vehicle_info) lnkVehicle.get(RegNum)).getVisitday());
                 System.out.println("The Visit day details are " + p3);
@@ -50,58 +51,98 @@ public class Vehicle_list {
                 String p4 = (((Vehicle_info) lnkVehicle.get(RegNum)).getEndday());
                 System.out.println("The End date details are " + p4);
 
+                //Get warning
+                String w2 = ((Vehicle_info) lnkVehicle.get(RegNum)).getWarning();
+                System.out.println("The Vehicle has warning " + w2);
+
+                String w3 = ((Vehicle_info) lnkVehicle.get(RegNum)).getSuspended();
+                System.out.println("The Vehicle has Suspended " + w2);
+
                 //Checking the Regular Visitor
                 if (p2 == "Regular Visitor") {
-                    if (day <= Integer.parseInt(p3) && day <= Integer.parseInt(p4)) {
+                    if (day >= Integer.parseInt(p3) && day <= Integer.parseInt(p4)) {
                         flag = true;
-                        System.out.println("The regular visitor with Registration number " +RegNum + " has permission");
+                        System.out.println("The regular visitor with Registration number " + RegNum + " has permission");
                     } else {
                         flag = false;
-                        System.out.println("The regular visitor with Registration number " +RegNum + " has no permission");
+                        System.out.println("The regular visitor with Registration number " + RegNum + " has no permission");
                     }
-                } 
+                }
 
                 //Checking the Day Visitor
                 if (p2 == "Day Visitor") {
-                    if (day == Integer.parseInt(p3) && day <= Integer.parseInt(p4)) {
+                    if (day <= Integer.parseInt(p3) && day <= Integer.parseInt(p4)) {
                         flag = true;
-                        System.out.println("The Day visitor with Rgestration number " +RegNum + " has permission");
+                        System.out.println("The Day visitor with Rgestration number " + RegNum + " has permission");
                     } else {
                         flag = false;
-                        System.out.println("The Day visitor with Registration number " +RegNum + " has no permission");
+                        System.out.println("The Day visitor with Registration number " + RegNum + " has no permission");
                     }
-                } 
+                }
 
                 //Checking the Unevesity member
                 if (p2 == "Unevesity member") {
-                    if (day == Integer.parseInt(p3) && day == Integer.parseInt(p4)) {
+                    if (day <= Integer.parseInt(p3) && day == Integer.parseInt(p3)) {
                         flag = true;
-                        System.out.println("The Unevesity member with Rgestration number " +RegNum + " has permission");
+                        System.out.println("The Unevesity member with Rgestration number " + RegNum + " has permission");
                     } else {
                         flag = false;
-                        System.out.println("The Unevesity member with Registration number " +RegNum + " has no permission");
+                        System.out.println("The Unevesity member with Registration number " + RegNum + " has no permission");
                     }
-                } 
 
-                //Checking the Parmenent Visitor 
-                if (p2 == "Parmenent Visitor") {
-                    if (day == Integer.parseInt(p3) && day == Integer.parseInt(p4)) {
-                        flag = true;
-                        System.out.println("The Parmenent visitor with Rgestration number " +RegNum + " has permission");
-                    } else {
-                        flag = false;
-                        System.out.println("The Parmenent visitor with Registration number " +RegNum + " has no permission");
+                    //Checking the Regular Visitor
+                    if (w2 == "Regular Visitor") {
+                        if (day <= Integer.parseInt(w3)) {
+                            flag = true;
+                            System.out.println("The regular visitor with Registration number " + RegNum + " has a warning");
+                        } else {
+                            flag = false;
+                            System.out.println("The regular visitor with Registration number " + RegNum + " has Suspended");
+                        }
                     }
-                } 
 
+                    //Checking the Day Visitor
+                    if (w2 == "Day Visitor") {
+                        if (day <= Integer.parseInt(w3)) {
+                            flag = true;
+                            System.out.println("The Day visitor with Rgestration number " + RegNum + " has a warning");
+                        } else {
+                            flag = false;
+                            System.out.println("The Day visitor with Registration number " + RegNum + " has Suspended");
+                        }
+                    }
+
+                    //Checking the Unevesity member
+                    if (w2 == "Unevesity member") {
+                        if (day <= Integer.parseInt(w3)) {
+                            flag = true;
+                            System.out.println("The Unevesity member with Rgestration number " + RegNum + "  has a warning");
+                        } else {
+                            flag = false;
+                            System.out.println("The Unevesity member with Registration number " + RegNum + " has Suspended");
+                        }
+                    }
+
+                    //Checking the Parmenent Visitor 
+                    if (w2 == "Parmenent Visitor") {
+                        if (day <= Integer.parseInt(w3)) {
+                            flag = true;
+                            System.out.println("The Parmenent visitor with Rgestration number " + RegNum + " has a warning");
+                        } else {
+                            flag = false;
+                            System.out.println("The Parmenent visitor with Registration number " + RegNum + " has Suspended");
+                        }
+                    }
+
+                }
             }
         }
         return flag;
     }
 
     //Codes for adding new vehicle to the Hashtable
-    public void add(Permit permit, String RegNum, String CarC) {
-        Vehicle_info = new Vehicle_info(permit, RegNum, CarC);
+    public void add(Permit permit, String RegNum, String CarC, String CarName) {
+        Vehicle_info = new Vehicle_info(permit, RegNum, CarC, CarName);
         lnkVehicle.put(RegNum, Vehicle_info);
         System.out.println("The Vehicle table is\n: " + lnkVehicle);
     }
@@ -115,6 +156,7 @@ public class Vehicle_list {
         return lnkVehicle;
     }
 
+    //Codes for removing vehicle from the Hashtable
     public boolean remove(String RegNum, String CarC) {
         return lnkVehicle.containsKey(RegNum);
     }

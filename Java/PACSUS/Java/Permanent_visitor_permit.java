@@ -13,17 +13,20 @@ package PACSUS.Java;
 
 
 public class Permanent_visitor_permit extends Permit {
+    
+    private String permitType;
 
     public Permanent_visitor_permit(String Cn) {
         super(Cn); 
+        permitType = "Permanent Visitor";
+        setPermitType(permitType);//Set the Permit Type
     }    
 
     @Override
     //ToString method for printing Permanent visitor permit
     public String toString() {
-         return "Permanent_visitor_permit{" + '}';
+        return "Permanent_visitor_permit{" + "permitType=" + permitType + '}';
     }
-    
 }
 
 

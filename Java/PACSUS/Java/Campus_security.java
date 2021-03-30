@@ -18,7 +18,9 @@ public class Campus_security extends JFrame implements Observer, ActionListener 
     private Vehicle_list lnkVehicle_list;
     private System_status systemStatus;
     private System_status lnkSystem_status;
+    private String rNum;
     private JButton active;
+    private JButton warnings;
     private JButton deactivate;
     private JTextField display;
 
@@ -39,7 +41,7 @@ public class Campus_security extends JFrame implements Observer, ActionListener 
         window.setLayout(new FlowLayout());
 
         // Set up input GUI
-        display = new JTextField(" ", 20);
+        display = new JTextField("", 20);
         window.add(display);
         active = new JButton("Active");
         window.add(active);
@@ -47,6 +49,9 @@ public class Campus_security extends JFrame implements Observer, ActionListener 
         deactivate = new JButton("Deactivate");
         window.add(deactivate);
         deactivate.addActionListener(this);
+        warnings = new JButton("Warnings");
+        window.add(warnings);
+        warnings.addActionListener(this);
 
         // Display the frame
         setVisible(true);
@@ -59,6 +64,13 @@ public class Campus_security extends JFrame implements Observer, ActionListener 
         } else if (e.getSource() == deactivate) {
             systemStatus.deactivate();
         } 
+        
+        if (e.getSource() == warnings) {
+            rNum = display.getText();
+            int day = 5;
+            lnkVehicle_list.checkPermitted(rNum, day);
+            lnkSystem_status.getStatus();  
+        }
     } // actionPerformed
 
     @Override

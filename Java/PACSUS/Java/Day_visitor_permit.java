@@ -13,39 +13,24 @@ package PACSUS.Java;
  */
 public class Day_visitor_permit extends Permit {
 
-    /**
-     * The name of the University member hosting the visit.
-     */
-
-    /**
-     * The date that the visitor is visiting on - entry will be allowed on that
-     * date only.
-     *
-     * @clientCardinality 1
-     * @supplierCardinality 1
-     * @label Visiting on
-     * @link aggregation
-     * @directed
-     */
     // Useful program constants
-    private String hostName;
-    private Date lnkDate;
-    private String permitType;
+    private String owenerName;
     private String visitDay;
+    private String permitType;
 
     public Day_visitor_permit(String Cn, String On, String Vd) {
         //initialize the values 
         super(Cn);
-        hostName = On;
+        owenerName = On;
         visitDay = Vd;
-        permitType = "Regular Visitor";
+        permitType = "Day Visitor";
         setPermitType(permitType);//Set the Permit Type
         setVisitday(Vd);//Set the visit day
     }
-
+    
     @Override
     //ToString method for printing Day visitor permit
     public String toString() {
-        return "Day_visitor_permit{" + "hostName=" + hostName + ", lnkDate=" + lnkDate + ", visitDay=" + visitDay + '}';
+         return "Regular_visitor_permit{" + ", owenerName=" + owenerName + ", visitDay=" + visitDay + ", permitType=" + permitType + '}';
     }
 }

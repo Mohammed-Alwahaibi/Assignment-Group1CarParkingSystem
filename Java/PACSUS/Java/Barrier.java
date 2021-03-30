@@ -24,10 +24,10 @@ public class Barrier extends JFrame implements Observer, ActionListener {
     private JButton check;
     private JButton quit;
     private JButton go;
-    private JButton stop;
     private String rNum;
     private JTextArea fdback;
     private JTextArea lbdt;
+    private JTextArea lbdpr;
     private JTextField display;
 
     Barrier(System_status lnkSystem_status, Vehicle_list lnkVehicle_list, String barrier_screen) {
@@ -61,14 +61,12 @@ public class Barrier extends JFrame implements Observer, ActionListener {
         window.add(fdback);
         lbdt = new JTextArea("");
         window.add(lbdt);
-        //Button for Go
+        lbdpr = new JTextArea("");
+        window.add(lbdpr);
+        //Button for Go with color green change to red
         go = new JButton("GO");
         window.add(go);
         go.addActionListener(this);
-        //Button for stop
-        stop = new JButton("STOP!");
-        window.add(stop);
-        stop.addActionListener(this);
 
         // Display the frame
         setVisible(true);
@@ -82,12 +80,12 @@ public class Barrier extends JFrame implements Observer, ActionListener {
             java.util.Date tDate = lnkSystem_status.getToday();
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(tDate);
+            int day = calendar.get(Calendar.DAY_OF_MONTH);
             calendar.get(Calendar.DAY_OF_MONTH);
             //lbdt.setText(""+tDate);
 
             //CheckPermit codes
             rNum = display.getText();
-            int day = 0;
             lnkVehicle_list.checkPermitted(rNum, day);
             lnkSystem_status.getStatus();
         }
@@ -102,7 +100,7 @@ public class Barrier extends JFrame implements Observer, ActionListener {
 
         //active to get status from system status 
         active = lnkSystem_status.getStatus();
-        System.out.print("updated value is " + active);
+        //System.out.print("updated value is " + active);
 
         if (active == true) {
             fdback.setText("The barrier is raised");
@@ -113,13 +111,16 @@ public class Barrier extends JFrame implements Observer, ActionListener {
 
         if (raised == true) {
             raised = lnkSystem_status.getStatus();
+            go.setText("GO");
             go.setBackground(Color.GREEN);
+            lbdpr.setText("Vehicle has permisson");
 
         } else if (raised == false) {
             raised = lnkSystem_status.getStatus();
-            stop.setBackground(Color.RED);
+            go.setText("STOP!");
+            go.setBackground(Color.RED);
+            lbdpr.setText("Vehicle has no permisson");
         }
-
     } // update
 
     public void clear() {
