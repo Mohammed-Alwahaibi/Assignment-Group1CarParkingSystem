@@ -9,6 +9,7 @@ import java.util.Observer;
 import javax.swing.JFrame;
 import java.awt.*;
 import java.awt.event.*;
+import java.util.Calendar;
 import java.util.Observable;
 import javax.swing.*;
 
@@ -42,8 +43,6 @@ public class Campus_security extends JFrame implements Observer, ActionListener 
         window.setLayout(new FlowLayout());
 
         // Set up input GUI
-        display = new JTextField("", 20);
-        window.add(display);
         active = new JButton("Active");
         window.add(active);
         active.addActionListener(this);
@@ -69,13 +68,9 @@ public class Campus_security extends JFrame implements Observer, ActionListener 
             systemStatus.deactivate();
             lbdpr.setText("Vehicle has no permisson");
         } 
-        
         if (e.getSource() == warnings) {
-            rNum = display.getText();
-            int day = 5;
-            lnkVehicle_list.checkPermitted(rNum, day);
-            lnkSystem_status.getStatus();  
         }
+        
     } // actionPerformed
 
     @Override

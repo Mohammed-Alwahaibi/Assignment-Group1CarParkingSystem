@@ -62,7 +62,7 @@ public class Permit_list {
     }
 
     //Codes for adding the university member to the Hashtable
-    public Permit addU(String Cn, String Vd) {
+    public Permit addU(String Cn, String On, String Vd) {
         University_member_permit University_member_permit = new University_member_permit(Cn, Vd);
         lnkPermit.put(Cn, University_member_permit);
         System.out.println("The permit table for University member: " + lnkPermit);

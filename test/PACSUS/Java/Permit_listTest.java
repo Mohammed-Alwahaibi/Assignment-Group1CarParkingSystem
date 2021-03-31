@@ -128,7 +128,7 @@ public class Permit_listTest {
         String Cn = "321654";
         String Vd = "10";
         Permit_list instance = new Permit_list();
-        Permit expResult = instance.addU("123564", "18");
+        Permit expResult = instance.addU("123564", "", "18");
         Permit result = instance.getPermit(Cn);
          System.out.println("Result" + result);
         System.out.println("expected result" + expResult);

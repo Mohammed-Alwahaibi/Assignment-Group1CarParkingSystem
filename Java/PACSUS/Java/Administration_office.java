@@ -68,6 +68,7 @@ public class Administration_office extends JFrame implements Observer, ActionLis
     private JTextField visitDay;
     private JTextField endDay;
     private JTextField display;
+    private JTextField displayW;
     private JTextField display1;
     Permit LPermit = null;
     private JComboBox<String> comboPerType;
@@ -106,6 +107,12 @@ public class Administration_office extends JFrame implements Observer, ActionLis
         window.add(labele);
         display = new JTextField("", 7);
         window.add(display);
+        
+        ////the number of warnings
+        JLabel labele1 = new JLabel("No of warnings:");
+        window.add(labele1);
+        displayW = new JTextField("", 7);
+        window.add(displayW);
         //Buttons
         add = new JButton("Add");
         window.add(add);
@@ -116,15 +123,6 @@ public class Administration_office extends JFrame implements Observer, ActionLis
         print = new JButton("Print");
         window.add(print);
         print.addActionListener(this);
-
-        display1 = new JTextField("", 10);
-        window.add(display1);
-        warnings = new JButton("Add Warnings");
-        window.add(warnings);
-        warnings.addActionListener(this);
-        warnings1 = new JButton("Delete Warnings");
-        window.add(warnings1);
-        warnings1.addActionListener(this);
 
         // Display the frame
         window.setVisible(true);
@@ -186,6 +184,7 @@ public class Administration_office extends JFrame implements Observer, ActionLis
             carCl.setText("");
             carName.setText("");
             display.setText("");
+            displayW.setText("");
 
             // code for print vehicle button
         } else if (e.getSource() == print) {
@@ -212,13 +211,15 @@ public class Administration_office extends JFrame implements Observer, ActionLis
 
             if (((String) comboPerType.getSelectedItem()).equals("Day Visitor")) {
                 lnkPermit_list.addD(carName.getText(), owenerNm.getText(), visitDay.getText());
+                
             } else if (((String) comboPerType.getSelectedItem()).equals("Regular Visitor")) {
                 lnkPermit_list.addR(carName.getText(), owenerNm.getText(), visitDay.getText(), endDay.getText());
+                
             } else if (((String) comboPerType.getSelectedItem()).equals("Permanent Visitor")) {
                 lnkPermit_list.addP(owenerNm.getText());
-
+                
             } else if (((String) comboPerType.getSelectedItem()).equals("University Visitor")) {
-                lnkPermit_list.addU(owenerNm.getText(), visitDay.getText());
+                lnkPermit_list.addU(carName.getText(), owenerNm.getText(), visitDay.getText());
 
             }
             endDay.setText("");

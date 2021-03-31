@@ -47,6 +47,11 @@ public class Vehicle_info {
     public int getNumEntries() {
         return lnkPermit.getNumEntries();
     }
+    
+    //Get the warnings
+    public int getNumWarning() {
+        return lnkPermit.getNumWarning();
+    }
 
     //Get permit from lnkPermit hashtable
     public Permit getPermit() {

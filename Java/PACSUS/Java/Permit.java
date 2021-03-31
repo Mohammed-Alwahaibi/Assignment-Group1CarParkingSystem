@@ -13,7 +13,7 @@ abstract public class Permit {
     // Useful program constants
     private String permitHolder;
     private int noOfEntries = 0;
-    private String warnings;
+    private int warnings;
     private String suspended;
     private boolean enteredToday = false;
     private Vehicle_info vehicleUsedToday;
@@ -26,8 +26,9 @@ abstract public class Permit {
         //initialize the values 
         this.permitType = permitType;
         permitHolder = Cn;
-        noOfEntries = 0;
-        warnings = Cn;
+        int i = 1;
+        noOfEntries = i++;
+        warnings = 0;
         suspended = Cn;
         enteredToday = false;
         permittedVehicles = new ArrayList();
@@ -48,14 +49,24 @@ abstract public class Permit {
         this.endday = endday;
     }
 
-    //Set the 
+    //Set the Entries
     public void setNumEntries(int noOfEntries) {
         this.noOfEntries = noOfEntries;
+    }
+    
+    //Set the warnings
+    public void setNumWarning(int warnings) {
+        this.warnings = warnings;
     }
 
     //Set the Suspended
     public void setSuspended(String suspended) {
         this.suspended = suspended;
+    }
+    
+    //Get the warnings
+    public int getNumWarning() {
+        return warnings;
     }
 
     //Get the Suspended
