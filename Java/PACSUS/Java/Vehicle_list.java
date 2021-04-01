@@ -49,9 +49,19 @@ public class Vehicle_list {
                 String p4 = (((Vehicle_info) lnkVehicle.get(RegNum)).getEndday());
                 System.out.println("The End date details are " + p4);
 
+                
+                String p5 = (((Vehicle_info) lnkVehicle.get(RegNum)).getNumEntries());
+                System.out.println("The Number of Entries are" + p5);
+                
+               
+                
+                String p6 = (((Vehicle_info) lnkVehicle.get(RegNum)).getNumWarning());
+                System.out.println("The Number of Warning is" + p6);
+                
                 //Checking the Regular Visitor
                 if (p2 == "Regular Visitor") {
-                    if (day >= Integer.parseInt(p3) && day <= Integer.parseInt(p4)) {
+                    if (day >= Integer.parseInt(p3) && day <= Integer.parseInt(p4)&& Integer.parseInt(p5) <=3 && Integer.parseInt(p6) <=3)
+                    {
                         flag = true;
                         System.out.println("The regular visitor with Registration number " + RegNum + " has permission");
                     } else {
@@ -62,7 +72,7 @@ public class Vehicle_list {
 
                 //Checking the Day Visitor
                 if (p2 == "Day Visitor") {
-                    if (day <= Integer.parseInt(p3) && day <= Integer.parseInt(p3)) {
+                    if (day <= Integer.parseInt(p3) && day <= Integer.parseInt(p3)&& Integer.parseInt(p5) <=3 && Integer.parseInt(p6) <=3) {
                         flag = true;
                         System.out.println("The Day visitor with Rgestration number " + RegNum + " has permission");
                     } else {
@@ -72,18 +82,18 @@ public class Vehicle_list {
                 }
 
                 //Checking the Unevesity member
-                if (p2 == "Unevesity Member") {
-                    if (day == Integer.parseInt(p3)) {
+                if (p2 == "University member") {
+                    if (Integer.parseInt(p5) <=3 && Integer.parseInt(p6) <=3) {
                         flag = true;
-                        System.out.println("The Unevesity Member with Registration number " + RegNum + " has permission");
+                        System.out.println("The University Member with Registration number " + RegNum + " has permission");
                     } else {
                         flag = false;
-                        System.out.println("The Unevesity Member with Registration number " + RegNum + " has no permission");
+                        System.out.println("The University Member with Registration number " + RegNum + " has no permission");
                     }
                 }
 
-                if (p2 == "Parmenent Visitor") {
-                    if (day == Integer.parseInt(p3)) {
+                if (p2 == "Permanent Visitor") {
+                    if (Integer.parseInt(p5) <=3 && Integer.parseInt(p6) <=3) {
                         flag = true;
                         System.out.println("The Parmenent Visitor with Rgestration number " + RegNum + " has permission");
                     } else {
@@ -97,8 +107,8 @@ public class Vehicle_list {
     }
 
     //Codes for adding new vehicle to the Hashtable
-    public void add(Permit permit, String RegNum, String CarC, String CarName, String NoEnt) {
-        Vehicle_info = new Vehicle_info(permit, RegNum, CarC, CarName, NoEnt);
+    public void add(Permit permit, String RegNum, String CarC, String CarName, String NoEnt, String NoWar) {
+        Vehicle_info = new Vehicle_info(permit, RegNum, CarC, CarName, NoEnt, NoWar);
         lnkVehicle.put(RegNum, Vehicle_info);
         System.out.println("The Vehicle table is\n: " + lnkVehicle);
     }
@@ -109,6 +119,11 @@ public class Vehicle_list {
         while (e.hasMoreElements()) {
             System.out.println("The elements are\n:" + e.nextElement());
         }
+        return lnkVehicle;
+    }
+    
+    public Hashtable print1() {
+        
         return lnkVehicle;
     }
 
@@ -123,32 +138,8 @@ public class Vehicle_list {
         System.out.println(" Vehicle Data has removed from Hashtable" + obj1);
     }
 
-    public void checkPermitted1(String rNum, int day) {
-        int NumEntries = ((Vehicle_info) lnkVehicle.get(rNum)).getNumEntries();
-        NumEntries = (((Vehicle_info) lnkVehicle.get(rNum)).getNumEntries());
-        System.out.println("Number of entries are " + NumEntries);
+ 
 
-        if (NumEntries == 3) {
-            System.out.println("The First Warning added to permit");
-        } else if (NumEntries == 4) {
-            System.out.println("The Second Warning added to permit");
-        } else if (NumEntries >= 5) {
-            System.out.println("The Third Warning added to permit");
-        } else if (NumEntries >= 6) {
-            System.out.println("vehicle permission is suspended");
-        }
-
-    }
-
-    public void checkPermitted2(String rNum, int day) {
-        int NoWarning = ((Vehicle_info) lnkVehicle.get(rNum)).getNumWarning();
-        NoWarning = (((Vehicle_info) lnkVehicle.get(rNum)).getNumWarning());
-        if (NoWarning >= 3) {
-            System.out.println("This permit is suspended , because warning reached above 3");
-        } else {
-            System.out.println("This permit is allowed");
-        }
-
-    }
+  
 
 }

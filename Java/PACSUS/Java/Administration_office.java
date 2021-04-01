@@ -175,7 +175,7 @@ public class Administration_office extends JFrame implements Observer, ActionLis
             // code for add vehicle button  
             if (!lnkVehicle_list.checkPermitted(regNum.getText())) {
                 LPermit = lnkPermit_list.getPermit(carName.getText());
-                lnkVehicle_list.add(LPermit, regNum.getText(), carCl.getText(), carName.getText(), display.getText());
+                lnkVehicle_list.add(LPermit, regNum.getText(), carCl.getText(), carName.getText(), display.getText(), displayW.getText());
                 System.out.println("Vehicle is added");
             } else {
                 System.out.println("Registration number is alredy existing");
@@ -216,7 +216,7 @@ public class Administration_office extends JFrame implements Observer, ActionLis
                 lnkPermit_list.addR(carName.getText(), owenerNm.getText(), visitDay.getText(), endDay.getText());
                 
             } else if (((String) comboPerType.getSelectedItem()).equals("Permanent Visitor")) {
-                lnkPermit_list.addP(owenerNm.getText());
+                lnkPermit_list.addP(carName.getText());
                 
             } else if (((String) comboPerType.getSelectedItem()).equals("University Visitor")) {
                 lnkPermit_list.addU(carName.getText(), owenerNm.getText(), visitDay.getText());

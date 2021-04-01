@@ -11,6 +11,7 @@ import javax.swing.JFrame;
 import java.awt.*;
 import java.awt.event.*;
 import java.util.Calendar;
+import java.util.Hashtable;
 import javax.swing.*;
 
 public class Barrier extends JFrame implements Observer, ActionListener {
@@ -31,6 +32,8 @@ public class Barrier extends JFrame implements Observer, ActionListener {
     private JTextArea labI;
     private JTextArea labC;
     private JTextField display;
+    private JLabel lblWarningRecord;
+    private JLabel lblWarning;
 
     Barrier(System_status lnkSystem_status, Vehicle_list lnkVehicle_list, String barrier_screen) {
         this.lnkVehicle_list = lnkVehicle_list;
@@ -42,8 +45,8 @@ public class Barrier extends JFrame implements Observer, ActionListener {
         //Barrier window
         // Configure the window
         setTitle("Barrier Screen");
-        setLocation(140, 40);
-        setSize(270, 250);
+        setLocation(110, 40);
+        setSize(380, 250);
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         Container window = getContentPane();
         window.setLayout(new FlowLayout());
@@ -65,19 +68,18 @@ public class Barrier extends JFrame implements Observer, ActionListener {
         go = new JButton("GO");
         window.add(go);
         go.addActionListener(this);
-        
-        
+
         warningsI = new JButton("Issue Warnings");
         window.add(warningsI);
         warningsI.addActionListener(this);
-        labI = new JTextArea("                  ");
-        window.add(labI);
+        lblWarning = new JLabel("Issue Warning");
+        window.add(lblWarning);
 
-        
         warningsC = new JButton("Check Warnings");
         window.add(warningsC);
         warningsC.addActionListener(this);
-        
+        lblWarningRecord = new JLabel("Record Warning");
+        window.add(lblWarningRecord);
 
         // Display the frame
         setVisible(true);
@@ -98,38 +100,47 @@ public class Barrier extends JFrame implements Observer, ActionListener {
             //CheckPermit codes
             rNum = display.getText();
             lnkVehicle_list.checkPermitted(rNum, day);
-            lnkVehicle_list.checkPermitted1(rNum, day);
+            //  lnkVehicle_list.checkPermitted1(rNum, day);
             lnkSystem_status.getStatus();
         }
         //Quit button
         if (e.getSource() == quit) {
             System.exit(0);
         }
-        
-        if (e.getSource() == warningsC) {
-            java.util.Date tDate = lnkSystem_status.getToday();
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(tDate);
-            int day = calendar.get(Calendar.DAY_OF_MONTH);
-            calendar.get(Calendar.DAY_OF_MONTH);
-            
-            rNum = display.getText();
-            lnkVehicle_list.checkPermitted2(rNum, day);
-            lnkSystem_status.getStatus();  
-        }
-        
+
         if (e.getSource() == warningsI) {
-            java.util.Date tDate = lnkSystem_status.getToday();
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(tDate);
-            int day = calendar.get(Calendar.DAY_OF_MONTH);
-            calendar.get(Calendar.DAY_OF_MONTH);
-            
-            rNum = display.getText();
-            lnkVehicle_list.checkPermitted2(rNum, day);
-            lnkSystem_status.getStatus();  
+            Hashtable lnkVehicle = lnkVehicle_list.print1();
+            String NoofWarning = (((Vehicle_info) lnkVehicle.get(display.getText())).getNumWarning());
+            int noWarning = Integer.parseInt(NoofWarning);
+
+            if (noWarning >= 3) {
+                lblWarning.setText("This permit is suspended , because warning reached above 3");
+            } else {
+                lblWarning.setText("This permit is allowed");
+            }
+
         }
-         
+
+        if (e.getSource() == warningsC) {
+
+            rNum = display.getText();
+
+            Hashtable lnkVehicle = lnkVehicle_list.print1();
+            String NoOfEntries = (((Vehicle_info) lnkVehicle.get(display.getText())).getNumEntries());
+            int noEntry = Integer.parseInt(NoOfEntries);
+
+            if (noEntry == 3) {
+                lblWarningRecord.setText(" First Warning added to permit");
+            } else if (noEntry == 4) {
+                lblWarningRecord.setText("Second Warning added to permit");
+            } else if (noEntry >= 5) {
+                lblWarningRecord.setText("Third Warning added to permit");
+            } else if (noEntry >= 6) {
+                lblWarningRecord.setText("The vehicle permission is suspended");
+            }
+
+        }
+
     } // actionPerformed
 
     // Notified by the system when it is altered:
@@ -150,7 +161,7 @@ public class Barrier extends JFrame implements Observer, ActionListener {
             raised = lnkSystem_status.getStatus();
             go.setBackground(Color.GREEN);
             go.setText("GO");
-            
+
         } else if (raised == false) {
             raised = lnkSystem_status.getStatus();
             go.setBackground(Color.RED);

@@ -27,15 +27,17 @@ public class Vehicle_info {
     private String carc;
     private String carName;
     private Permit lnkPermit;
-    private int NumEntries;
+    private String NumEntries;
+    private String NumWarning;
 
-    public Vehicle_info(Permit permit, String c1, String c2, String c3, String c4) {
+    public Vehicle_info(Permit permit, String c1, String c2, String c3, String c4, String c5) {
         lnkPermit = permit; //Permit hashtable
         regNo = c1; //regerstration number
         carc = c2; //Car color
         carName = c3;//Car name
         int i = 1;
-        NumEntries = i++;
+        NumEntries = c4;
+        NumWarning = c5;
     }
 
     //Get the permit type from lnkPermit hashtable
@@ -43,16 +45,39 @@ public class Vehicle_info {
         return lnkPermit.getPermitType();
     }
 
-    //Get the number of entries
-    public int getNumEntries() {
-        return lnkPermit.getNumEntries();
-    }
-    
-    //Get the warnings
-    public int getNumWarning() {
-        return lnkPermit.getNumWarning();
+    public void setNumEntries(String NumEntries) {
+        this.NumEntries = NumEntries;
     }
 
+    public void setNumWarning(String NumWarning) {
+        this.NumWarning = NumWarning;
+    }
+
+    public String getNumEntries() {
+        return NumEntries;
+    }
+
+    public String getNumWarning() {
+        return NumWarning;
+    }
+
+    
+    
+    
+    /*//Get the number of entries
+   public String getNumEntries() {
+       return lnkVehicle.getNumEntries();
+    }
+    
+    //Get the number of entries
+
+    //Get the warnings
+    public String getNumWarning() {
+        return lnkVehicle.getNumWarning();
+    }*/
+   
+       
+    
     //Get permit from lnkPermit hashtable
     public Permit getPermit() {
         return lnkPermit;
@@ -67,10 +92,11 @@ public class Vehicle_info {
     public String getEndday() {
         return lnkPermit.getEndday();
     }
+//ToString method for printing the vehicle info
 
     @Override
-    //ToString method for printing the vehicle info
     public String toString() {
-        return "Vehicle_info{" + "regNo=" + regNo + ", carc=" + carc + ", carName=" + carName + ", lnkPermit=" + lnkPermit + ", NumEntries=" + NumEntries + '}';
+        return "Vehicle_info{" + "regNo=" + regNo + ", carc=" + carc + ", carName=" + carName + ", lnkPermit=" + lnkPermit + ", NumEntries=" + NumEntries + ", NumWarning=" + NumWarning + '}';
     }
+   
 }
