@@ -25,11 +25,13 @@ public class Main {
      * register as Observers as necessary.
      */
     public static void main(String[] args) {
+        
+        // This is the main file done by Stirling ID 1222222
         System_status systemStatus = new System_status();
         Vehicle_list vehicleList = new Vehicle_list();
         Permit_list permitList = new Permit_list();
         //Barrier barrier1 = new Barrier(systemStatus, vehicleList);  // Frame, boundary class
-        Barrier barrier = new Barrier(systemStatus, vehicleList, "Barrier screen");
+        //Barrier barrier = new Barrier(systemStatus, vehicleList, "Barrier screen");
         // Repeat for as many barriers as required
 
         //Campus_security campusSecurity1 = new Campus_security(systemStatus, vehicleList);  // Frame, boundary class
