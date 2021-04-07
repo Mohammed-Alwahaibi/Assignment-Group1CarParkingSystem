@@ -13,7 +13,7 @@ import java.awt.event.*;
 import java.util.Calendar;
 import java.util.Date;
 import javax.swing.*;
-
+//  The file for Barrier
 public class Barrier extends JFrame implements Observer, ActionListener {
 
     /**
